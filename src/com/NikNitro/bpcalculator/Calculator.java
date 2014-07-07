@@ -4,14 +4,17 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-public class Calculator extends Activity {
+public class Calculator extends Activity implements OnClickListener{
 	
 	private Button boton;
-	private EditText litros, precio, gasolina, preciofinal;
-	private double dlitros, dprecio, dgasolina, dpreciofinal;
+//	private EditText litros, precio, compra, preciofinal;
+	private double dlitros, dprecio, dcompra, dpreciofinal;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,12 @@ public class Calculator extends Activity {
 	private void initialize() {
 		// TODO Auto-generated method stub
 		boton = (Button)findViewById(R.id.button);
+		boton.setOnClickListener(this);
+//		litros = (EditText)findViewById(R.id.Cantidad);
+//		precio = (EditText)findViewById(R.id.Precio);
+//		compra = (EditText)findViewById(R.id.Compra);
+//		preciofinal = (EditText)findViewById(R.id.Pago);
+		
 	}
 
 	@Override
@@ -43,5 +52,11 @@ public class Calculator extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onClick(View v) {
+		Toast texto1 = Toast.makeText(getBaseContext(), "Cálculo completo", Toast.LENGTH_SHORT);
+		texto1.show();
 	}
 }
