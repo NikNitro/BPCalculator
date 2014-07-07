@@ -8,12 +8,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Calculator extends Activity implements OnClickListener{
 	
 	private Button boton;
-//	private EditText litros, precio, compra, preciofinal;
+	private EditText litros, precio;
+	private TextView compra, preciofinal;
 	private double dlitros, dprecio, dcompra, dpreciofinal;
 	
 	@Override
@@ -28,10 +30,11 @@ public class Calculator extends Activity implements OnClickListener{
 		// TODO Auto-generated method stub
 		boton = (Button)findViewById(R.id.button);
 		boton.setOnClickListener(this);
-//		litros = (EditText)findViewById(R.id.Cantidad);
-//		precio = (EditText)findViewById(R.id.Precio);
-//		compra = (EditText)findViewById(R.id.Compra);
-//		preciofinal = (EditText)findViewById(R.id.Pago);
+		litros = (EditText)findViewById(R.id.Cantidad);
+		precio = (EditText)findViewById(R.id.Precio);
+		compra = (TextView)findViewById(R.id.Compra);
+		preciofinal = (TextView)findViewById(R.id.Pago);
+		
 		
 	}
 
@@ -56,6 +59,12 @@ public class Calculator extends Activity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
+		dlitros = Double.parseDouble(litros.getText().toString());
+		dprecio = Double.parseDouble(precio.getText().toString());
+		double prec = Math.rint(dprecio*100/dlitros)/100;
+		compra.setText(prec+"");
+		double desc = prec*0.05;
+		preciofinal.setText((dprecio-desc)+"");
 		Toast texto1 = Toast.makeText(getBaseContext(), "Cálculo completo", Toast.LENGTH_SHORT);
 		texto1.show();
 	}
