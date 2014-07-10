@@ -59,13 +59,29 @@ public class Calculator extends Activity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		dlitros = Double.parseDouble(litros.getText().toString());
-		dprecio = Double.parseDouble(precio.getText().toString());
-		double prec = Math.rint(dprecio*100/dlitros)/100;
-		compra.setText(prec+"");
-		double desc = prec*0.05;
-		preciofinal.setText((dprecio-desc)+"");
-		Toast texto1 = Toast.makeText(getBaseContext(), "Cálculo completo", Toast.LENGTH_SHORT);
-		texto1.show();
+		calcular();
+		mostrarToast("Cálculo completo");
 	}
+
+	private void mostrarToast(String string) {
+		Toast texto1 = Toast.makeText(getBaseContext(), string, Toast.LENGTH_SHORT);
+		texto1.show();
+		
+	}
+
+	private void calcular() {
+		try {
+			dlitros = Double.parseDouble(litros.getText().toString());
+			dprecio = Double.parseDouble(precio.getText().toString());
+			double prec = Math.rint(dprecio*100/dlitros)/100;
+			compra.setText(prec+"");
+			double desc = prec*0.05;
+			preciofinal.setText((dprecio-desc)+"");
+		} catch (Exception e) {
+			mostrarToast("Rellene todos los campos correctamente, por favor");
+		}
+		
+	}
+	
+	
 }
