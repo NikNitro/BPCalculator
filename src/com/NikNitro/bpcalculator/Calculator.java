@@ -12,14 +12,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Calculator extends Activity implements OnClickListener{
-	
+	//Botón
 	private Button boton;
+	//Texto Editable por el usuario
 	private EditText litros, precio;
+	//Texto SÓLO legible por el usuario
 	private TextView compra, preciofinal;
+	// Variables enteras
 	private double dlitros, dprecio, dcompra, dpreciofinal;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		//Éste método se ejecuta el primero al iniciar la aplicación.
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_calculator);
 		
@@ -29,7 +33,10 @@ public class Calculator extends Activity implements OnClickListener{
 	private void initialize() {
 		// TODO Auto-generated method stub
 		boton = (Button)findViewById(R.id.button);
+		//Añado al botón el controlador.
 		boton.setOnClickListener(this);
+		//Así es como se inicializan los objetos para que queden
+		// linkeados con el activity.
 		litros = (EditText)findViewById(R.id.Cantidad);
 		precio = (EditText)findViewById(R.id.Precio);
 		compra = (TextView)findViewById(R.id.Compra);
@@ -59,11 +66,14 @@ public class Calculator extends Activity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
+		// Al hacer click en algún botón, se llama aquí.
+		//Si tuvieramos más de un botón tendríamos que ver a cual se refiere. Para ello usamos la v que nos pasan.
 		calcular();
 		mostrarToast("Cálculo completo");
 	}
 
 	private void mostrarToast(String string) {
+		//Muestra un mensaje
 		Toast texto1 = Toast.makeText(getBaseContext(), string, Toast.LENGTH_SHORT);
 		texto1.show();
 		
